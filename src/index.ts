@@ -10,12 +10,11 @@ app.use(express.json())
 app.use(cors())
 app.use(webHookRout)
 
+
 app.listen(PORT, () => {
     console.log('server started on port ', PORT)
 })
 
-let requestCount = 0
 app.get('/', (_, res) => {
-    console.log('requestCount', requestCount++)
     res.status(200).send('Угадай год чатап')
 })
