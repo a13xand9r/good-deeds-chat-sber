@@ -1,0 +1,39 @@
+{
+  "intents": {
+    "/Получить дело": {
+      "matchers": [
+        {
+          "type": "phrase",
+          "rule": "получить дело"
+        },
+        {
+          "type": "phrase",
+          "rule": "еще"
+        }
+      ],
+      "variables": {}
+    },
+    "/Да": {
+      "matchers": [
+        {
+          "type": "phrase",
+          "rule": "да"
+        },
+        {
+          "type": "phrase",
+          "rule": "давай"
+        },
+        {
+          "type": "phrase",
+          "rule": "начнем"
+        }
+      ],
+      "variables": {}
+    },
+    "/Нет": {
+      "matchers": [],
+      "variables": {}
+    }
+  },
+  "entities": {}
+}
