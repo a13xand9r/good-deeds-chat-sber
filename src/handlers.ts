@@ -12,6 +12,7 @@ export const noMatchHandler: SaluteHandler = ({ req, res }) => {
     const keyset = req.i18n(dictionary)
     res.setPronounceText(keyset('404'))
     res.appendBubble(keyset('404'))
+    res.appendSuggestions(['Получить доброе дело', 'Хватит'])
 }
 
 export const helloHandler: SaluteHandler = ({ req, res }) => {
