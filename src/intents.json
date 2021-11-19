@@ -9,6 +9,14 @@
         {
           "type": "phrase",
           "rule": "еще"
+        },
+        {
+          "type": "phrase",
+          "rule": "дальше"
+        },
+        {
+          "type": "phrase",
+          "rule": "следующее"
         }
       ],
       "variables": {}
