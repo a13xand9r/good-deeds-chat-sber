@@ -36,8 +36,8 @@ export const dealHandler: SaluteHandler = ({ req, res, session }) => {
         res.appendBubble(dealMessage)
         res.appendSuggestions(['Ещё', 'Хватит'])
     } else {
-        res.setPronounceText('На сегодня у меня закончились комплименты')
-        res.appendBubble('На сегодня у меня закончились комплименты')
+        res.setPronounceText('На сегодня у меня закончились добрые дела')
+        res.appendBubble('На сегодня у меня закончились добрые дела')
     }
 }
 
