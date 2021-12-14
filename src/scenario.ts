@@ -28,7 +28,7 @@ require('dotenv').config()
 // const storage2 = new SaluteFirebaseSessionStorage(admin.database())
 const storage = new SaluteMemoryStorage()
 const intents = createIntents(model.intents)
-const { text, intent } = createMatchers<SaluteRequest, typeof intents>()
+const { text, intent, action } = createMatchers<SaluteRequest, typeof intents>()
 
 const userScenario = createUserScenario({
     Hello: {
@@ -66,6 +66,25 @@ const userScenario = createUserScenario({
         },
         handle: thanksHandler
     },
+    CallRatingHandler: {
+        match: text('оценить приложение', {normalized: true}),
+        handle: ({res, req}) => {
+            console.log('CallRatingHandler')
+            // @ts-ignore
+            res.message.messageName = 'CALL_RATING'
+        }
+    },
+    RatingResultHandler: {
+        match: req => {
+            console.log('serverAction',req.serverAction)
+            return action('RATING_RESULT')(req)
+        },
+        handle: ({res, req}) => {
+            console.log('RATING_RESULT_HANDLER')
+            res.appendBubble('Спасибо за оценку!')
+            res.setPronounceText('Спасибо за оценку!')
+        }
+    },
 })
 
 const systemScenario = createSystemScenario({
@@ -82,8 +101,9 @@ const scenarioWalker = createScenarioWalker({
 
 export const handleNlpRequest = async (request: NLPRequest): Promise<NLPResponse> => {
     const req = createSaluteRequest(request)
+// console.log('req --------------\n', JSON.stringify(req)a, '\n-----------------------')
     const res = createSaluteResponse(request)
-    const sessionId = request.uuid.sub
+    const sessionId = request.uuid.userId
     const session = await storage.resolve(sessionId)
     await scenarioWalker({ req, res, session })
 
